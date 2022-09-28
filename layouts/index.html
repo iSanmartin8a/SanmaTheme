@@ -3,8 +3,9 @@
 {{ .Site.Params.menu.main}}
 
 <div>
+    <h1>{{.Params.title}}</h1>
     <h2>{{.Params.subtitulo}}</h2>
-    <h3>Saludos desde {{.Params.ciudad}}</h1>
+    {{ .Content }}
+    <h3>Saludos desde la oficina central de {{.Params.title}}, en {{.Params.ciudad}}</h1>
 </div>
-{{ .Content }}
 {{ end }}

@@ -35,6 +35,10 @@ nav > a {
   color: #fff;
 }
 
+.button {
+  transition: 0.5s;
+}
+
 .button:hover {
     transition: 0.5s;
     transform: scale(1.3);
@@ -43,6 +47,34 @@ nav > a {
 .navigator:hover{
     transition: 3s ease-in;
     background-color: #588157;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 5px;
+  width: 30%;
+}
+
+div {
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+}
+
+div img {
+  width: 7rem;
+  height: 10rem;
+  transition: 2s;
+}
+
+div img:hover {
+  transition: 2s;
+  transform: scale(1.1);
 }
 
 @media only screen and (min-width: 768px) {
