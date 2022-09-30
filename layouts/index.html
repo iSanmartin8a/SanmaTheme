@@ -1,10 +1,11 @@
 {{ define "main" }}
-
+{{- partial "head.html" . -}}
 {{ .Site.Params.menu.main}}
 
 <div>
-    <h1>{{.Params.title}}</h1>
-    <h2>{{.Params.subtitulo}}</h2>
+    <br>
+    <h1 class="titulo">{{.Params.title}}</h1>
+    <h2 class="titulo">{{.Params.subtitulo}}</h2>
     {{ .Content }}
     <h3>Saludos desde la oficina central de {{.Params.title}}, en {{.Params.ciudad}}</h1>
 </div>
