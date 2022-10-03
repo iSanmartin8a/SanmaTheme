@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html>
-{{- partial "head.html" . -}}
+    <script>
+        var path = window.location.pathname;
+        console.log(path);
+
+        if (path == "/acme/peliculas/peliculas/"){
+
+            document.write({{- partial "head2.html" . -}});
+
+        } else {
+
+            document.write({{- partial "head.html" . -}});
+
+        }
+    </script>
 
 <body>
     <div id="wallpaper">

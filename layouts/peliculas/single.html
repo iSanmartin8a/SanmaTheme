@@ -1,0 +1,58 @@
+{{ define "main" }}
+<div class="container"><br>
+    <script language="JavaScript">
+        String.prototype.capitalizeFirstLetter = function () {
+            return this.charAt(0).toUpperCase() + this.slice(1);
+        }
+
+        var path = "";
+        var href = document.location.href;
+        var s = href.split("/");
+        for (var i = 3; i < (s.length - 2); i++) {
+            path += " &gt;  <a href=\"" + href.substring(0, href.indexOf("/" + s[i]) + s[i].length + 1) + "/\">" + s[i].capitalizeFirstLetter() + "</a> ";
+        }
+        i = s.length - 1;
+        path += "<a href=\"" + href.substring(0, href.indexOf(s[i]) + s[i].length) + "\">" + s[i] + "</a>";
+        path += "  &gt;   Películas";
+        var newpath = path.slice(5);
+        document.writeln(newpath);
+    </script>
+    <div class="banner">
+        <h1 class="titulo">Películas</h1>
+        <h2>By Alex Sanmartín</h2>
+
+    </div>
+    <hr class="solid">
+    <div class="container">
+        <h2 style="text-align: center;">Películas mejor valoradas de IMDB</h2><br>
+        <div class="tbl-header">
+            <table class="IMDBtable" cellpadding="0" cellspacing="0" border="0">
+                <thead class="IMDBthead">
+                    <tr>
+                        <th scope="col">Título</th>
+                        <th scope="col">Año</th>
+                        <th scope="col">Imágen</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tbl-content">
+            <table  cellpadding="0" cellspacing="0" border="0">
+                {{ range .Site.Data.datos_pelis}}
+                <tbody>
+                    <tr style="margin-top: 10rem;">
+                        <td style="width: 30%;" class="list-group-item">{{ .titulo }}</td>
+                        <td>{{ .year}}</td>
+                        <td class="list-group-item"><img style="width: 5rem; margin-left: 0%;" src="{{ .image }}"
+                                alt="{{ .titulo }}"></td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    {{ .Content }}
+    <br>
+</div>
+{{ end }}

@@ -5,7 +5,8 @@
 }
 
 html {
-  background-color: #0d1b2a;
+  background: -webkit-linear-gradient(left, #24355c, #223f7c);
+  background: linear-gradient(to right, #24355c, #223f7c);
   scroll-behavior: smooth;
 }
 
