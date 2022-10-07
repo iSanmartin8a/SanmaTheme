@@ -1,0 +1,44 @@
+{{ define "main" }}
+{{- partial "head.html" . -}}
+
+<div class="container"><br>
+    <script language="JavaScript">
+        String.prototype.capitalizeFirstLetter = function () {
+            return this.charAt(0).toUpperCase() + this.slice(1);
+        }
+
+        var path = "";
+        var href = document.location.href;
+        var s = href.split("/");
+        for (var i = 3; i < (s.length - 2); i++) {
+            path += " &gt;  <a href=\"" + href.substring(0, href.indexOf("/" + s[i]) + s[i].length + 1) + "/\">" + s[i].capitalizeFirstLetter() + "</a> ";
+        }
+        i = s.length - 1;
+        path += "<a href=\"" + href.substring(0, href.indexOf(s[i]) + s[i].length) + "\">" + s[i] + "</a>";
+        path += "  &gt;   {{.Title}}";
+        var newpath = path.slice(5);
+        document.writeln(newpath);
+    </script>
+    {{ .Content }}
+    <table class="table table-striped" id="thead_bootstrap">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Ranking</th>
+                <th scope="col">Título</th>
+                <th scope="col">Año</th>
+                <th scope="col">Imágen</th>
+            </tr>
+        </thead>
+    </table>
+    <table class="table table-striped table-hover table-sm table-responsive" id="tabla_bootstrap">
+        {{ range .Site.Data.peliculas }}
+        <tr>
+            <td>{{ .ranking }}</td>
+            <td>{{ .titulo }}</td>
+            <td>{{ .year }}</td>
+            <td><img src="{{.image }}" alt="Imagen de {{.titulo}}" style="border: 0px; width: 7rem;"></td>
+        </tr>
+        {{ end }}
+    </table>
+</div>
+{{ end }}
