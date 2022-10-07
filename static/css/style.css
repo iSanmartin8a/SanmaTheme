@@ -229,3 +229,9 @@ img[src*="#thumbnail"]:hover {
   right: 3%;
   top: 12%;
 }
+
+#tabla_bootstrap {
+  max-height: 30rem;
+  overflow: auto;
+  display:inline-block;
+}
