@@ -71,7 +71,7 @@ nav {
   float: none;
   flex-direction: column;
   border-radius: 40px;
-  width: 70%;
+  width: 50%;
   height: 1rem;
   margin: auto;
   transition: 0.3s ease-out;
@@ -176,6 +176,13 @@ img[src*="#thumbnail"]:hover {
 
 /* IDs Y CLASES */
 
+.navigator {
+  position: absolute;
+  top: 20%;
+  right: 30%;
+
+}
+
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
   padding: 16px;
@@ -216,6 +223,8 @@ img[src*="#thumbnail"]:hover {
   margin-right: 1rem;
 }
 
-/* .d-flex {
-  margin-right: 1rem;
-} */
+.d-flex {
+  position: absolute;
+  right: 3%;
+  top: 12%;
+}
