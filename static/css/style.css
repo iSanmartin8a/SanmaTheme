@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap");
 
 /* BIG CONTENT */
 
@@ -8,18 +7,30 @@
 }
 
 html {
-  background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+  background: linear-gradient(
+    112.1deg,
+    rgb(32, 38, 57) 11.4%,
+    rgb(63, 76, 119) 70.2%
+  );
   scroll-behavior: smooth;
   height: 100%;
 }
 
 #wallpaper {
-  background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+  background: linear-gradient(
+    112.1deg,
+    rgb(32, 38, 57) 11.4%,
+    rgb(63, 76, 119) 70.2%
+  );
   height: 100%;
 }
 
 body {
-  background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%)  ;
+  background: linear-gradient(
+    112.1deg,
+    rgb(32, 38, 57) 11.4%,
+    rgb(63, 76, 119) 70.2%
+  );
   height: 100%;
 }
 
@@ -50,8 +61,8 @@ footer {
 }
 
 #cabeza {
-  width:100%;
-  position:fixed;
+  width: 100%;
+  position: fixed;
   top: 0;
   left: 0;
   background-color: #e0e1dd;
@@ -60,8 +71,8 @@ footer {
 }
 
 footer {
-  width:100%;
-  position:fixed;
+  width: 100%;
+  position: fixed;
   bottom: 0;
   left: 0;
   height: 30px;
@@ -100,7 +111,7 @@ div {
   nav {
     flex-direction: row;
   }
-  
+
   .column {
     width: 100%;
     display: block;
@@ -181,7 +192,6 @@ img[src*="#thumbnail"]:hover {
   position: absolute;
   top: 20%;
   right: 30%;
-
 }
 
 .card {
@@ -196,7 +206,7 @@ img[src*="#thumbnail"]:hover {
 }
 
 .titulo {
-  text-align: center; 
+  text-align: center;
   font-family: poppins;
   text-shadow: 2px 2px 8px #778da9;
 }
@@ -207,7 +217,9 @@ img[src*="#thumbnail"]:hover {
   padding: 0 10px;
 }
 
-.row {margin: 0 -5px;}
+.row {
+  margin: 0 -5px;
+}
 
 .banner {
   width: 100%;
@@ -230,8 +242,68 @@ img[src*="#thumbnail"]:hover {
   top: 12%;
 }
 
-#tabla_bootstrap {
+#thead_bootstrap {
+  text-align: left;
   max-height: 30rem;
   overflow: auto;
-  display:inline-block;
+  width: 100%;
+  display: block;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+#thead_bootstrap thead th {
+  position: sticky;
+  top: 0;
+  text-transform: uppercase;
+}
+
+#thead_bootstrap tbody th {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+#thead_bootstrap th:nth-child(1) {
+  width: 5%;
+}
+
+#thead_bootstrap th:nth-child(2) {
+  width: 40%;
+}
+
+#thead_bootstrap th:nth-child(3) {
+  width: 5%;
+}
+
+#thead_bootstrap th:nth-child(4) {
+  width: 16%;
+}
+
+#thead_bootstrap th:nth-child(5) {
+  width: 5%;
+}
+
+#thead_bootstrap::-webkit-scrollbar {
+  width: 10px;
+}
+
+#thead_bootstrap::-webkit-scrollbar-track {
+  background: rgb(179, 177, 177);
+  border-radius: 10px;
+}
+
+#thead_bootstrap::-webkit-scrollbar-thumb {
+  background: rgb(136, 136, 136);
+  border-radius: 10px;
+}
+
+#thead_bootstrap::-webkit-scrollbar-thumb:hover {
+  background: rgb(100, 100, 100);
+  border-radius: 10px;
+}
+
+#thead_bootstrap::-webkit-scrollbar-thumb:active {
+  background: rgb(68, 68, 68);
+  border-radius: 10px;
 }

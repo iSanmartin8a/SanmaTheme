@@ -18,32 +18,56 @@
         path += "  &gt;   {{.Title}}";
         var newpath = path.slice(5);
         document.writeln(newpath);
+
+        var up = document.getElementById('GFG_UP');
+        up.innerHTML = "Click on the button to add image element";
+        var down = document.getElementById('GFG_DOWN');
+
+        function show() {
+            {{ range .Site.Data.peliculas }}
+            document.getElementById('{{.ranking}}')
+                .style.display = "block";
+
+            document.getElementById('btn' + '{{.ranking}}')
+                .style.display = "none";
+                {{ end}}
+        }
+
+        function dontshow() {
+            {{ range .Site.Data.peliculas }}
+            document.getElementById('{{.ranking}}')
+                .style.display = "none";
+
+            document.getElementById('btn' + '{{.ranking}}')
+                .style.display = "block";
+                {{ end}}
+        }
     </script>
     {{ .Content }}
     <br><br>
     <div class="wrapperTable">
-
-        <table class="table table-striped" id="thead_bootstrap">
+        <h1 style="text-align: center;">Películas mejor valoradas en el portal IMDB</h1><br>
+        <table class="table table-striped table-hover" id="thead_bootstrap">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Ranking</th>
                     <th scope="col">Título</th>
                     <th scope="col">Año</th>
-                    <th scope="col">Imágen</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Web</th>
                 </tr>
             </thead>
-        </table>
-        <table class="table table-striped table-hover table-sm table-responsive" id="tabla_bootstrap">
             {{ range .Site.Data.peliculas }}
             <tr>
                 <td>{{ .ranking }}</td>
                 <td>{{ .titulo }}</td>
                 <td>{{ .year }}</td>
-                <td><img src="{{.image }}" alt="Imagen de {{.titulo}}" style="border: 0px; width: 7rem;"></td>
-            </tr>
-            {{ end }}
-        </table>
-        <caption>Datos sacados de IMDB.</caption>
-    </div>
+                <td><img id="{{.ranking}}" src="{{.image}}" alt="GFG image" style="display: none; width: 5rem; border: 0px; cursor: pointer;" onclick="dontshow()"/><button type="button" onclick="show()" id="btn{{.ranking}}" class="btn btn-light"  aria-pressed="true">Mostrar imagen</button></td>
+                <td><a href="https://imdb.com{{.url}}" target="_blank"><img src="https://journeytobiblicalmanhood.com/wp-content/uploads/sites/5/2014/07/cast-vision.png" style="width: 2rem; border: 0px;"></a></td>
+    </tr>
+    {{ end }}
+    </table>
+    <caption>Datos sacados de IMDB.</caption>
+</div>
 </div>
 {{ end }}
