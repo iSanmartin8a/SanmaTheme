@@ -1,0 +1,85 @@
+{{ define "main" }}
+{{- partial "head.html" . -}}
+
+<div class="container"><br>
+    <script language="JavaScript">
+        String.prototype.capitalizeFirstLetter = function () {
+            return this.charAt(0).toUpperCase() + this.slice(1);
+        }
+
+        var path = "";
+        var href = document.location.href;
+        var s = href.split("/");
+        for (var i = 3; i < (s.length - 2); i++) {
+            path += " &gt;  <a href=\"" + href.substring(0, href.indexOf("/" + s[i]) + s[i].length + 1) + "/\">" + s[i].capitalizeFirstLetter() + "</a> ";
+        }
+        i = s.length - 1;
+        path += "<a href=\"" + href.substring(0, href.indexOf(s[i]) + s[i].length) + "\">" + s[i] + "</a>";
+        path += "  &gt;   {{.Title}}";
+        var newpath = path.slice(5);
+        document.writeln(newpath);
+
+
+
+        function separateQueryString() {
+            queryString = location.search.substr(1);
+            pares = queryString.split('&');
+            $_GET = [];
+            for (ii in pares) {
+                tmp = pares[ii].split('=');
+                $_GET[tmp[0]] = unescape(tmp[1].split('+').join(' '));
+            }
+            //for (ii in $_GET){
+            // Si quieres mostrar todas las variables en un Div.
+            //document.getElementById(‘nombre_Div’).innerHTML+=$_GET[ii]+’<br />’;
+            //}
+            document.getElementById('latitudGet').value = $_GET['latitudPost'].value;
+            document.getElementById('longitudGet').value = $_GET['longitudPost'].value;
+
+            $_GET['latitudPost'].value = document.getElementById('latitudGet').value;
+        }
+        window.onload = separateQueryString;
+
+        $("#trigerred").on('click', loadNewContent);
+    </script>
+    {{ .Content }}
+    <br><br>
+    <div class="wrapperTable">
+        <h1 style="text-align: center;">Institutos de Secundaria de Zaragoza</h1><br>
+        <table class="table table-striped table-hover table-sortable" id="tableSchools">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" data-mdb-sort="false">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Naturaleza</th>
+                    <th scope="col">Mapas</th>
+                </tr>
+            </thead>
+            {{ $url := "csv/colegios.csv" }}
+            {{ $sep := "," }}
+            {{ range $i, $r := getCSV $sep $url }}
+            {{ $ciudad := index $r 2}}
+            {{ $tipo := index $r 6}}
+            {{ $latitud := index $r 1}}
+            {{ $nombre := index $r 5}}
+            {{ $longitud := index $r 3}}
+            {{ if and (eq $ciudad "Zaragoza") (eq $tipo "Instituto de Educación Secundaria (IES)")}}
+            <tr>
+                <td>{{ index $r 0 }}</td>
+                <td>{{ index $r 5 }}</td>
+                <td>{{ index $r 4 }}</td>
+                <td>
+                    <div id="latitudGet" style="display: none;">{{ $latitud }}</div>
+                    <div id="longitudGet" style="display: none;">{{ $longitud }}</div>
+                        <a href="/acme/mapas/mapas">
+                        <input id="trigerred" type="image"  src="https://journeytobiblicalmanhood.com/wp-content/uploads/sites/5/2014/07/cast-vision.png" style="width: 2rem; border: 0px;">
+                        </a>
+                </td>
+            </tr>
+            {{ end}}
+            {{ end }}
+        </table>
+        <caption>Datos sacados de IMDB.</caption>
+    </div>
+</div>
+{{ end }}

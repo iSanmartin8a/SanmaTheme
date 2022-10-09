@@ -1,0 +1,60 @@
+{{ define "main" }}
+{{- partial "head.html" . -}}
+
+<div class="container"><br>
+    <script language="JavaScript">
+        String.prototype.capitalizeFirstLetter = function () {
+            return this.charAt(0).toUpperCase() + this.slice(1);
+        }
+
+        var path = "";
+        var href = document.location.href;
+        var s = href.split("/");
+        for (var i = 3; i < (s.length - 2); i++) {
+            path += " &gt;  <a href=\"" + href.substring(0, href.indexOf("/" + s[i]) + s[i].length + 1) + "/\">" + s[i].capitalizeFirstLetter() + "</a> ";
+        }
+        i = s.length - 1;
+        path += "<a href=\"" + href.substring(0, href.indexOf(s[i]) + s[i].length) + "\">" + s[i] + "</a>";
+        path += "  &gt;   {{.Title}}";
+        var newpath = path.slice(5);
+        document.writeln(newpath);
+
+        var loadNewContent = function (){
+            $.ajax("../colegios/single.html", {
+                success: function (response) {
+                    $("#latitudGet").html(response);
+                }
+            });
+        };
+
+    </script>
+    {{ .Content }}
+    <!-- <input id="latitudPost" type="text" disabled>
+    <input id="longitudPost" type="text" disabled> -->
+    <br><br>
+    {{ $url := "csv/colegios.csv" }}
+    {{ $sep := "," }}
+    {{ range $i, $r := getCSV $sep $url }}
+    {{ $ciudad := index $r 2}}
+    {{ $tipo := index $r 6}}
+    {{ $latitud := index $r 1}}
+    {{ $nombre := index $r 5}}
+    {{ $longitud := index $r 3}}
+    {{ if and (eq $ciudad "Zaragoza") (eq $tipo "Instituto de Educación Secundaria (IES)")}}
+
+    <table>
+        <tr>
+            <h3>{{ $nombre }}</h3>
+            <iframe width="300" height="170" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                src="https://maps.google.com/maps?q=+{{$latitud}}+,+{{$longitud}}+&hl=es&z=14&amp;output=embed">
+            </iframe>
+        </tr>
+    </table><br>
+    <input id="campo1" type="text" disabled value="{{ $latitud }}">
+    <input id="campo2" type="text" disabled value="{{ $longitud }}">
+
+    {{ end}}
+    {{ end }}
+
+</div>
+{{ end }}
