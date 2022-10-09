@@ -19,7 +19,7 @@
         var newpath = path.slice(5);
         document.writeln(newpath);
 
-        var loadNewContent = function (){
+        var loadNewContent = function () {
             $.ajax("../colegios/single.html", {
                 success: function (response) {
                     $("#latitudGet").html(response);
