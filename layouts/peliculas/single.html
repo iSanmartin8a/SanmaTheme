@@ -24,13 +24,10 @@
         var down = document.getElementById('GFG_DOWN');
 
         function show() {
-            {{ range .Site.Data.peliculas }}
-            document.getElementById('{{.ranking}}')
-                .style.display = "block";
-
-            document.getElementById('btn' + '{{.ranking}}')
-                .style.display = "none";
-                {{ end}}
+            {{range .Site.Data.peliculas}}
+            document.getElementById('{{.ranking}}').style.display = "block";
+            document.getElementById('{{.url}}').style.display = "none";
+            {{ end}}
         }
 
         function dontshow() {
@@ -38,7 +35,7 @@
             document.getElementById('{{.ranking}}')
                 .style.display = "none";
 
-            document.getElementById('btn' + '{{.ranking}}')
+            document.getElementById('{{.url}}')
                 .style.display = "block";
                 {{ end}}
         }
@@ -47,10 +44,10 @@
     <br><br>
     <div class="wrapperTable">
         <h1 style="text-align: center;">Películas mejor valoradas en el portal IMDB</h1><br>
-        <table class="table table-striped table-hover" id="thead_bootstrap">
+        <table class="table table-striped table-hover table-sortable" id="thead_bootstrap">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">Ranking</th>
+                    <th scope="col" data-mdb-sort="false">Ranking</th>
                     <th scope="col">Título</th>
                     <th scope="col">Año</th>
                     <th scope="col">Imagen</th>
@@ -62,7 +59,7 @@
                 <td>{{ .ranking }}</td>
                 <td>{{ .titulo }}</td>
                 <td>{{ .year }}</td>
-                <td><img id="{{.ranking}}" src="{{.image}}" alt="GFG image" style="display: none; width: 5rem; border: 0px; cursor: pointer;" onclick="dontshow()"/><button type="button" onclick="show()" id="btn{{.ranking}}" class="btn btn-light"  aria-pressed="true">Mostrar imagen</button></td>
+                <td><img id="{{.ranking}}" src="{{.image}}" alt="GFG image" style="display: none; width: 5rem; border: 0px; cursor: pointer;" onclick="dontshow()"/><button type="button" onclick="show()" id="{{.url}}" class="btn btn-light"  aria-pressed="true">Mostrar imagen</button></td>
                 <td><a href="https://imdb.com{{.url}}" target="_blank"><img src="https://journeytobiblicalmanhood.com/wp-content/uploads/sites/5/2014/07/cast-vision.png" style="width: 2rem; border: 0px;"></a></td>
     </tr>
     {{ end }}

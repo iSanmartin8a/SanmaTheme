@@ -7,6 +7,24 @@
     <h1 class="titulo">{{.Params.title}}</h1>
     <h2 class="titulo">{{.Params.subtitulo}}</h2>
     {{ .Content }}
-    <h3>Saludos desde la oficina central de {{.Params.title}}, en {{.Params.ciudad}}</h1>
+    <div class="contributors">
+        <h3>Desarrolladores del proyecto:</h3>
+        {{ $headers := (dict "Authorization" "isanmartin8a@gmail.com:my_personal_access_token") }}
+        {{ $contributors := getJSON "https://api.github.com/repos/isanmartin8a/acme/contributors" $headers }}
+        <table>
+            <tr>
+                <td>
+                    {{ range $contributors }}
+                    <a href="{{ .html_url }}" target="_blank">
+                                <img src="{{ .avatar_url }}" alt="{{ .login }}" class="imageCont" style="width: 3rem; border: 0px;">
+                    </a>
+                </td>
+            </tr>
+        </table>
+
+        {{ end }}
+    </div>
+    <br><br>
+    <h5>Saludos desde la oficina central de {{.Params.title}}, en {{.Params.ciudad}}</h5>
 </div>
 {{ end }}
